@@ -11,12 +11,17 @@ public class Helicopter : MonoBehaviour
     public Vector3 helicopterPosition;
     public static Helicopter instance;
     public bool isgrounded;
+    public Transform points;
+    Transform[] spawnPoints;
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
         audiohelicopter = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
+        spawnPoints = points.GetComponentsInChildren<Transform>();
+        int j = Random.Range(1, spawnPoints.Length);
+        this.transform.position = spawnPoints[j].transform.position;
     }
 
     // Update is called once per frame
